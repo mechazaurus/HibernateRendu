@@ -23,9 +23,9 @@ public abstract class Boat {
     private Long boatID;
     private String name;
     private Integer weight;
-    // Dock
+    // Space
     @ManyToOne
-    private Dock dock;
+    private Space space;
     // Owner
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "boat")
     private Owner owner;
@@ -52,8 +52,8 @@ public abstract class Boat {
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
-    public Dock getDock() {
-        return dock;
+    public Space getSpace() {
+        return space;
     }
     public Owner getOwner() {
         return owner;
@@ -61,12 +61,26 @@ public abstract class Boat {
 
     // Other methods
 
+    public void addDock (Space space) throws Exception {
+
+        if (this.space != null && this.space != space) {
+            throw new Exception("Le bateau est déjà dans sur un autre quai.");
+        } else {
+            try {
+                space.addBoat(this);
+                this.space = space;
+            } catch (Exception e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+
     /**
      * Adds an owner to the boat only if the boat doesn't have an owner and the owner doesn't have a boat.
      * @param owner The boat's owner
      * @throws Exception If the boat already has an owner or if the owner already has a boat
      */
-    public  void addOwner (Owner owner) throws Exception {
+    public void addOwner (Owner owner) throws Exception {
 
         if (this.owner != null && this.owner != owner) {
             throw new Exception("Ce bateau possède déjà un propriétaire.");
