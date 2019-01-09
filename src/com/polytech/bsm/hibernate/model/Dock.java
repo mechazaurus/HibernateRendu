@@ -11,7 +11,7 @@ import java.util.List;
  * @author Yohann BENETREAULT
  * @author Irteza SHEIKH MUHAMMAD
  * @version 0.1
- * @since 08/01/2019
+ * @since 09/01/2019
  */
 
 @Entity
@@ -19,36 +19,25 @@ public class Dock {
 
     // Attributes
     @Id
-    @GenericGenerator(name="codeGen", strategy = "increment")
-    @GeneratedValue(generator = "codeGen")
-    private Integer code;
-    private Integer space;
-    // Boats list
+    @GenericGenerator(name="dockCode", strategy = "increment")
+    @GeneratedValue(generator = "dockCode")
+    private Long dockCode;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dock")
-    private List<Boat> boats;
+    private List<Space> spaces;
 
     // Constructors
     public Dock () {
-        boats = new ArrayList<>();
-        space = 0; // By default the size is 0, so we can't add any boat until resize
+        spaces = new ArrayList<>(); // To avoid null pointer exceptions
     }
 
-    public Dock(Integer space) {
-        this.space = space;
-        boats = new ArrayList<>();
+    // Getters (no setters here)
+    public Long getDockCode() {
+        return dockCode;
+    }
+    public List<Space> getSpaces() {
+        return spaces;
     }
 
-    // Getters and setters
-    public Integer getCode() {
-        return code;
-    }
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-    public Integer getSpace() {
-        return space;
-    }
-    public void setSpace(Integer space) {
-        this.space = space;
-    }
+    // Other methods
+
 }

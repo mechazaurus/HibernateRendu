@@ -24,7 +24,7 @@ public abstract class Boat {
     private String name;
     private Integer weight;
     // Space
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "boat")
     private Space space;
     // Owner
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "boat")
