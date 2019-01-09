@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class Sailboat extends  Boat {
+public class Sailboat extends Boat {
 
     // Attributes
     private Integer sailSurface;

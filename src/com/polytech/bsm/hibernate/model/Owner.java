@@ -52,14 +52,16 @@ public class Owner {
         return boat;
     }
 
-    // Other methods
+    // ===================================================================
+    //                            Other methods
+    // ===================================================================
 
     /**
-     * Adds a boat to the owner only if the owner doesn't have a boat and the boat doesn't have an owner.
+     * Adds a boat to the owner.
      * @param boat The owner's boat
      * @throws Exception If the owner already has a boat or if the boat already has an owner
      */
-    public void addBoat (Boat boat) throws Exception {
+    public void addBoat(Boat boat) throws Exception {
 
         if (this.boat != null && this.boat != boat) {
             throw new Exception("Cette personne est déjà propriétaire d'un bateau.");
@@ -70,6 +72,20 @@ public class Owner {
 
             if (boat.getOwner() == null) {
                 boat.addOwner(this);
+            }
+        }
+    }
+
+    /**
+     * Removes the boat.
+     * @param boat The boat to remove.
+     */
+    public void removeBoat(Boat boat)  {
+        if (this.boat.equals(boat)) {
+            this.boat = null;
+
+            if (boat.getOwner().equals(this)) {
+                boat.removeOwner(this);
             }
         }
     }

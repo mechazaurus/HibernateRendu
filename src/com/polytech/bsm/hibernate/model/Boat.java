@@ -59,31 +59,57 @@ public abstract class Boat {
         return owner;
     }
 
-    // Other methods
+    // ===================================================================
+    //                            Other methods
+    // ===================================================================
 
-    public void addDock (Space space) throws Exception {
+    /**
+     * Adds a space to the boat.
+     * @param space The space to add.
+     * @throws Exception If the boat is already associated to a space and if the space is already associated to a boat.
+     */
+    public void addSpace(Space space) throws Exception {
 
         if (this.space != null && this.space != space) {
-            throw new Exception("Le bateau est déjà dans sur un autre quai.");
+            throw new Exception("Le bateau est déjà associé à un autre quai.");
+        } else if (this.space.equals(space)) {
+            throw new Exception("Le bateau est déjà associé à ce quai.");
+        } else if (space.getBoat() != null && space.getBoat() != this) {
+            throw new Exception("L'emplacement est déjà associé à un autre bateau.");
         } else {
-            try {
+            this.space = space;
+
+            if(space.getBoat() == null) {
                 space.addBoat(this);
-                this.space = space;
-            } catch (Exception e) {
-                throw new Exception(e.getMessage());
             }
         }
     }
 
     /**
-     * Adds an owner to the boat only if the boat doesn't have an owner and the owner doesn't have a boat.
-     * @param owner The boat's owner
-     * @throws Exception If the boat already has an owner or if the owner already has a boat
+     * Removes the space.
+     * @param space The space to remove.
      */
-    public void addOwner (Owner owner) throws Exception {
+    public void removeSpace(Space space) {
+        if (this.space.equals(space)) {
+            this.space = null;
+
+            if (space.getBoat().equals(this)) {
+                space.removeBoat(this);
+            }
+        }
+    }
+
+    /**
+     * Adds an owner to the boat.
+     * @param owner The boat's owner.
+     * @throws Exception If the boat is already associated to an owner or if the owner is already associated to a boat.
+     */
+    public void addOwner(Owner owner) throws Exception {
 
         if (this.owner != null && this.owner != owner) {
-            throw new Exception("Ce bateau possède déjà un propriétaire.");
+            throw new Exception("Ce bateau possède déjà associé à un autre propriétaire.");
+        } else if (this.owner.equals(owner)) {
+            throw new Exception("Ce bateau est déjà associé à ce propriétaire.");
         } else if (owner.getBoat() != null && owner.getBoat() != this) {
             throw new Exception("Cette personne est déjà propriétaire d'un bateau.");
         } else {
@@ -95,5 +121,18 @@ public abstract class Boat {
         }
     }
 
+    /**
+     * Removes the owner.
+     * @param owner The owner to remove.
+     * @throws Exception If the owner isn't the one associated to it.
+     */
+    public void removeOwner(Owner owner) {
+        if (this.owner.equals(owner)) {
+            this.owner = null;
 
+            if (owner.getBoat().equals(this)) {
+                owner.removeBoat(this);
+            }
+        }
+    }
 }
