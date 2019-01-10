@@ -22,6 +22,7 @@ public class Dock {
     @GenericGenerator(name="dockCode", strategy = "increment")
     @GeneratedValue(generator = "dockCode")
     private Long dockCode;
+    // Associated spaces
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dock")
     private List<Space> spaces;
 

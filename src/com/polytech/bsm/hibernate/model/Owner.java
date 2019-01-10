@@ -22,7 +22,7 @@ public class Owner {
     private Long ownerID;
     private String name;
     private String address;
-    // Boat
+    // Associated boat
     @OneToOne
     private Boat boat;
 

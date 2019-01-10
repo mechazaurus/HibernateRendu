@@ -23,10 +23,10 @@ public abstract class Boat {
     private Long boatID;
     private String name;
     private Integer weight;
-    // Space
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "boat")
+    // Associated space
+    @OneToOne
     private Space space;
-    // Owner
+    // Associated owner
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "boat")
     private Owner owner;
 
