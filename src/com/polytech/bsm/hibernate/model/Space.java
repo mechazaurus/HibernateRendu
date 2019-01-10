@@ -29,6 +29,10 @@ public class Space {
     private Dock dock;
 
     // Constructors
+    public Space() {
+
+    }
+
     public Space(Integer size) {
         this.size = size;
     }

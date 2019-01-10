@@ -27,7 +27,11 @@ public class Owner {
     private Boat boat;
 
     // Constructors
-    public Owner (String name, String address) {
+    public Owner() {
+
+    }
+
+    public Owner(String name, String address) {
         this.name = name;
         this.address = address;
     }

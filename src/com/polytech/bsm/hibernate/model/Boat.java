@@ -31,7 +31,11 @@ public abstract class Boat {
     private Owner owner;
 
     // Constructors
-    public Boat (String name, Integer weight) {
+    public Boat() {
+
+    }
+
+    public Boat(String name, Integer weight) {
         this.name = name;
         this.weight = weight;
     }

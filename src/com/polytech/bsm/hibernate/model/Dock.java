@@ -27,7 +27,7 @@ public class Dock {
     private List<Space> spaces;
 
     // Constructors
-    public Dock () {
+    public Dock() {
         spaces = new ArrayList<>(); // To avoid null pointer exceptions
     }
 

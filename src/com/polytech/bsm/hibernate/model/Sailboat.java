@@ -17,7 +17,11 @@ public class Sailboat extends Boat {
     private Integer sailSurface;
 
     // Constructors
-    public Sailboat (String name, Integer weight, Integer surface) {
+    public Sailboat() {
+        super();
+    }
+
+    public Sailboat(String name, Integer weight, Integer surface) {
         super(name, weight);
         this.sailSurface = surface;
     }

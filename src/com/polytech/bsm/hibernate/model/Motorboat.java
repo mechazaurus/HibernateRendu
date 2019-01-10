@@ -17,7 +17,11 @@ public class Motorboat extends Boat {
     private Integer horsepower;
 
     // Constructors
-    public Motorboat (String name, Integer weight, Integer horsepower) {
+    public Motorboat() {
+        super();
+    }
+
+    public Motorboat(String name, Integer weight, Integer horsepower) {
         super(name, weight);
         this.horsepower = horsepower;
     }
