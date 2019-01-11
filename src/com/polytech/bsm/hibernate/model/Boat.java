@@ -76,10 +76,6 @@ public abstract class Boat {
 
         if (this.space != null && this.space != space) {
             throw new Exception("Le bateau est déjà associé à un autre quai.");
-        } else if (this.space.equals(space)) {
-            throw new Exception("Le bateau est déjà associé à ce quai.");
-        } else if (space.getBoat() != null && space.getBoat() != this) {
-            throw new Exception("L'emplacement est déjà associé à un autre bateau.");
         } else {
             this.space = space;
 
@@ -112,10 +108,6 @@ public abstract class Boat {
 
         if (this.owner != null && this.owner != owner) {
             throw new Exception("Ce bateau possède déjà associé à un autre propriétaire.");
-        } else if (this.owner.equals(owner)) {
-            throw new Exception("Ce bateau est déjà associé à ce propriétaire.");
-        } else if (owner.getBoat() != null && owner.getBoat() != this) {
-            throw new Exception("Cette personne est déjà propriétaire d'un bateau.");
         } else {
             this.owner = owner;
 

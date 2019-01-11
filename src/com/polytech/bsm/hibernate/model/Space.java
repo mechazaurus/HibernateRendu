@@ -56,6 +56,9 @@ public class Space {
     public Dock getDock() {
         return dock;
     }
+    public void setDock(Dock dock) {
+        this.dock = dock;
+    }
 
     // ===================================================================
     //                            Other methods
@@ -65,11 +68,7 @@ public class Space {
 
         if (this.boat != null && !this.boat.equals(boat)) {
             throw new Exception("L'emplacement est déjà associé à un autre bateau.");
-        } else if (this.boat.equals(boat)) {
-            throw new Exception("L'emplacement est déjà associé à ce bateau.");
-        } else if (boat.getSpace() != null && boat.getSpace().equals(this)) {
-            throw new Exception("Le bateau est déjà associé à un emplacement.");
-        } else {
+        }  else {
             this.boat = boat;
 
             if(!boat.getSpace().equals(this)) {
@@ -95,34 +94,32 @@ public class Space {
 
     /**
      * Adds a dock to the space.
-     * @param dock The dock to add.
+     * @param dockArg The dock to add.
      * @throws Exception If the dock is already associated to this space or if the space is already associated to another dock.
      */
-    public void addDock(Dock dock) throws Exception {
+    public void addDock(Dock dockArg) throws Exception {
 
-        if (this.dock != null && !this.dock.equals(dock)) {
+        if (this.dock != null) {
             throw new Exception("L'emplacement est déjà associé à un autre quai.");
-        } else if (this.dock.equals(dock)) {
-            throw new Exception("L'emplacement est déjà associé à ce quai.");
         } else {
-            this.dock = dock;
+            this.dock = dockArg;
 
-            if (!dock.isSpaceInList(this)) {
-                dock.addSpace(this);
+            if (!dockArg.isSpaceInList(this)) {
+                dockArg.addSpace(this);
             }
         }
     }
 
     /**
      * Removes the dock.
-     * @param dock The dock to remove.
+     * @param dockArg The dock to remove.
      */
-    public void removeDock(Dock dock) {
-        if (this.dock.equals(dock)) {
+    public void removeDock(Dock dockArg) {
+        if (this.dock.equals(dockArg)) {
             this.dock = null;
 
-            if (dock.isSpaceInList(this)) {
-                dock.removeSpace(this);
+            if (dockArg.isSpaceInList(this)) {
+                dockArg.removeSpace(this);
             }
         }
     }

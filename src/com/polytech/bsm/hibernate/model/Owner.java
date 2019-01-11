@@ -69,8 +69,6 @@ public class Owner {
 
         if (this.boat != null && this.boat != boat) {
             throw new Exception("Cette personne est déjà propriétaire d'un bateau.");
-        } else if (boat.getOwner() != null && boat.getOwner() != this) {
-            throw new Exception("Ce bateau possède déjà un propriétaire.");
         } else {
             this.boat = boat;
 
