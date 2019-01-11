@@ -19,16 +19,30 @@ public class Main {
 
         EntityTransaction entityTransaction = entityManager.getTransaction();
 
-        Space space = new Space(1);
-        Owner jack = new Owner("Jack Sparrow", "132 Rue du poney");
-        Sailboat blackpearl = new Sailboat("Le Blackpear", 5000, 15);
         Dock dock = new Dock();
+        Owner jack = new Owner("Jack Sparrow", "132 Rue du poney");
+
+        Space space = new Space(1);
+        Sailboat blackpearl = new Sailboat("Le Blackpear", 5000, 15);
+        Space space2 = new Space(1);
+        Sailboat blackpearl2 = new Sailboat("Le Blackpear2", 5000, 15);
+        Space space3 = new Space(1);
+        Sailboat blackpearl3 = new Sailboat("Le Blackpear3", 5000, 15);
+
         try
         {
             blackpearl.addSpace(space);
             blackpearl.addOwner(jack);
-            //jack.addBoat(blackpearl);
             dock.addSpace(space);
+
+            blackpearl2.addSpace(space2);
+            blackpearl2.addOwner(jack);
+            dock.addSpace(space2);
+
+            blackpearl3.addSpace(space3);
+            blackpearl3.addOwner(jack);
+            dock.addSpace(space3);
+
         }
         catch (Exception d)
         {
@@ -36,12 +50,17 @@ public class Main {
         }
 
         entityTransaction.begin();
-        entityManager.persist(space);
-        entityManager.persist(jack);
-        entityManager.persist(blackpearl);
         entityManager.persist(dock);
-        entityTransaction.commit();
+        entityManager.persist(jack);
 
+        entityManager.persist(space);
+        entityManager.persist(blackpearl);
+        entityManager.persist(space2);
+        entityManager.persist(blackpearl2);
+        entityManager.persist(space3);
+        entityManager.persist(blackpearl3);
+
+        entityTransaction.commit();
         entityManager.close();
         entityManagerFactory.close();
     }
