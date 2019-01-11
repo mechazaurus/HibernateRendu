@@ -26,6 +26,8 @@ public class Main {
         try
         {
             blackpearl.addSpace(space);
+            blackpearl.addOwner(jack);
+            //jack.addBoat(blackpearl);
             dock.addSpace(space);
         }
         catch (Exception d)
