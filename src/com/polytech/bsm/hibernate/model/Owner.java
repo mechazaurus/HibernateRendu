@@ -62,32 +62,32 @@ public class Owner {
 
     /**
      * Adds a boat to the owner.
-     * @param boat The owner's boat
+     * @param boatArg The owner's boat
      * @throws Exception If the owner already has a boat or if the boat already has an owner
      */
-    public void addBoat(Boat boat) throws Exception {
+    public void addBoat(Boat boatArg) throws Exception {
 
-        if (this.boat != null && this.boat != boat) {
+        if (this.boat != null) {
             throw new Exception("Cette personne est déjà propriétaire d'un bateau.");
         } else {
-            this.boat = boat;
+            this.boat = boatArg;
 
-            if (boat.getOwner() == null) {
-                boat.addOwner(this);
+            if (boatArg.getOwner() == null) {
+                boatArg.addOwner(this);
             }
         }
     }
 
     /**
      * Removes the boat.
-     * @param boat The boat to remove.
+     * @param boatArg The boat to remove.
      */
-    public void removeBoat(Boat boat)  {
-        if (this.boat.equals(boat)) {
+    public void removeBoat(Boat boatArg)  {
+        if (this.boat.equals(boatArg)) {
             this.boat = null;
 
-            if (boat.getOwner().equals(this)) {
-                boat.removeOwner(this);
+            if (boatArg.getOwner().equals(this)) {
+                boatArg.removeOwner(this);
             }
         }
     }

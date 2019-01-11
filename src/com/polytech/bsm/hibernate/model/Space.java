@@ -64,30 +64,30 @@ public class Space {
     //                            Other methods
     // ===================================================================
 
-    public void addBoat(Boat boat) throws Exception {
+    public void addBoat(Boat boatArg) throws Exception {
 
-        if (this.boat != null && !this.boat.equals(boat)) {
+        if (this.boat != null) {
             throw new Exception("L'emplacement est déjà associé à un autre bateau.");
         }  else {
-            this.boat = boat;
+            this.boat = boatArg;
 
-            if(!boat.getSpace().equals(this)) {
-                boat.addSpace(this);
+            if(!boatArg.getSpace().equals(this)) {
+                boatArg.addSpace(this);
             }
         }
     }
 
     /**
      * Removes the boat.
-     * @param boat The boat to remove.
+     * @param boatArg The boat to remove.
      */
-    public void removeBoat(Boat boat) {
+    public void removeBoat(Boat boatArg) {
 
-        if(this.boat.equals(boat)) {
+        if(this.boat.equals(boatArg)) {
             this.boat = null;
 
-            if(boat.getSpace().equals(this)) {
-                boat.removeSpace(this);
+            if(boatArg.getSpace().equals(this)) {
+                boatArg.removeSpace(this);
             }
         }
     }

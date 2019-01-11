@@ -6,18 +6,10 @@ import javax.persistence.*;
 
 public class DockDAO {
 
-    public static Dock getDock(Integer code) {
-
-        // Init
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tpHibernate");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public static Dock getDock(EntityManager em, Integer code) {
 
         // Object to return
-        Dock dock = entityManager.getReference(Dock.class, Long.valueOf(code));
-
-        // Closing managers
-        entityManager.close();
-        entityManagerFactory.close();
+        Dock dock = em.getReference(Dock.class, Long.valueOf(code));
 
         return dock;
     }
