@@ -22,7 +22,7 @@ public class Space {
     private Long spaceCode;
     private Integer size;
     // Associated boat
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "space")
+    @OneToOne
     private Boat boat;
     // Associated dock
     @ManyToOne
