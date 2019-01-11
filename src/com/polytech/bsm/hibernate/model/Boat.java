@@ -72,16 +72,14 @@ public abstract class Boat {
      * @param space The space to add.
      * @throws Exception If the boat is already associated to a space and if the space is already associated to a boat.
      */
-    public void addSpace(Space space) throws Exception {
+    public void addSpace(Space space1) throws Exception {
 
-        if (this.space != null && this.space != space) {
+        if (this.space != null && this.space != space1) {
             throw new Exception("Le bateau est déjà associé à un autre quai.");
-        } else if (this.space.equals(space)) {
-            throw new Exception("Le bateau est déjà associé à ce quai.");
-        } else if (space.getBoat() != null && space.getBoat() != this) {
+        } else if (space1.getBoat() != null && space1.getBoat() != this) {
             throw new Exception("L'emplacement est déjà associé à un autre bateau.");
         } else {
-            this.space = space;
+            this.space = space1;
 
             if(space.getBoat() == null) {
                 space.addBoat(this);
@@ -139,4 +137,6 @@ public abstract class Boat {
             }
         }
     }
+
+
 }
