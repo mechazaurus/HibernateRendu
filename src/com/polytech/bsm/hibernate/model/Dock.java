@@ -22,6 +22,7 @@ public class Dock {
     @GenericGenerator(name="dockCode", strategy = "increment")
     @GeneratedValue(generator = "dockCode")
     private Long dockCode;
+    private Integer spacesNumber;
     // Associated spaces
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dock")
     private List<Space> spaces;
@@ -31,10 +32,22 @@ public class Dock {
         spaces = new ArrayList<>(); // To avoid null pointer exceptions
     }
 
+    public Dock(Integer number) {
+        this.spacesNumber = number;
+        spaces = new ArrayList<>(); // To avoid null pointer exceptions
+    }
+
     // Getters (no setters here)
     public Long getDockCode() {
         return dockCode;
     }
+    public Integer getSpacesNumber() {
+        return spacesNumber;
+    }
+    public void setSpacesNumber(Integer spacesNumber) {
+        this.spacesNumber = spacesNumber;
+    }
+
     public List<Space> getSpaces() {
         return spaces;
     }
@@ -45,40 +58,40 @@ public class Dock {
 
     /**
      * Adds a space to the dock.
-     * @param space The space to add.
+     * @param spaceArg The space to add.
      * @throws Exception If the space is already in the list or if the space is already associated to another dock.
      */
-    public void addSpace(Space space) throws Exception {
+    public void addSpace(Space spaceArg) throws Exception {
 
         for(Space s : spaces) {
-            if (s.equals(space)) {
+            if (s.equals(spaceArg)) {
                 throw new Exception("L'emplacement est déjà associé à ce quai.");
             }
         }
 
-        if (space.getDock() != null && !space.getDock().equals(this)) {
+        if (spaceArg.getDock() != null) {
             throw new Exception("L'emplacement est déjà associé à un autre quai.");
         } else {
-            spaces.add(space);
+            spaces.add(spaceArg);
 
-            if (!space.getDock().equals(this)) {
-                space.addDock(this);
+            if (spaceArg.getDock() == null) {
+                spaceArg.addDock(this);
             }
         }
     }
 
     /**
      * Removes a space associated to the dock.
-     * @param space The space to remove.
+     * @param spaceArg The space to remove.
      */
-    public void removeSpace(Space space) {
+    public void removeSpace(Space spaceArg) {
 
         for(Space s : spaces) {
-            if (s.equals(space)) {
+            if (s.equals(spaceArg)) {
                 spaces.remove(s);
 
-                if (space.getDock().equals(this)) {
-                    space.removeDock(this);
+                if (spaceArg.getDock().equals(this)) {
+                    spaceArg.removeDock(this);
                 }
             }
         }
