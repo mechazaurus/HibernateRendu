@@ -69,18 +69,18 @@ public abstract class Boat {
 
     /**
      * Adds a space to the boat.
-     * @param space The space to add.
+     * @param spaceArg The space to add.
      * @throws Exception If the boat is already associated to a space and if the space is already associated to a boat.
      */
-    public void addSpace(Space space) throws Exception {
+    public void addSpace(Space spaceArg) throws Exception {
 
-        if (this.space != null && this.space != space) {
+        if (this.space != null) {
             throw new Exception("Le bateau est déjà associé à un autre quai.");
         } else {
-            this.space = space;
+            this.space = spaceArg;
 
-            if(space.getBoat() == null) {
-                space.addBoat(this);
+            if(spaceArg.getBoat() == null) {
+                spaceArg.addBoat(this);
             }
         }
     }
@@ -101,33 +101,33 @@ public abstract class Boat {
 
     /**
      * Adds an owner to the boat.
-     * @param owner The boat's owner.
+     * @param ownerArg The boat's owner.
      * @throws Exception If the boat is already associated to an owner or if the owner is already associated to a boat.
      */
-    public void addOwner(Owner owner) throws Exception {
+    public void addOwner(Owner ownerArg) throws Exception {
 
-        if (this.owner != null && this.owner != owner) {
+        if (this.owner != null) {
             throw new Exception("Ce bateau possède déjà associé à un autre propriétaire.");
         } else {
-            this.owner = owner;
+            this.owner = ownerArg;
 
-            if (owner.getBoat() == null) {
-                owner.addBoat(this);
+            if (ownerArg.getBoat() == null) {
+                ownerArg.addBoat(this);
             }
         }
     }
 
     /**
      * Removes the owner.
-     * @param owner The owner to remove.
+     * @param ownerArg The owner to remove.
      * @throws Exception If the owner isn't the one associated to it.
      */
-    public void removeOwner(Owner owner) {
-        if (this.owner.equals(owner)) {
+    public void removeOwner(Owner ownerArg) {
+        if (this.owner.equals(ownerArg)) {
             this.owner = null;
 
-            if (owner.getBoat().equals(this)) {
-                owner.removeBoat(this);
+            if (ownerArg.getBoat().equals(this)) {
+                ownerArg.removeBoat(this);
             }
         }
     }
