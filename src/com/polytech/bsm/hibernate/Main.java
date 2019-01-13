@@ -1,23 +1,30 @@
 package com.polytech.bsm.hibernate;
 
-import com.polytech.bsm.hibernate.model.Dock;
-import com.polytech.bsm.hibernate.model.Space;
-import com.polytech.bsm.hibernate.model.Owner;
-import com.polytech.bsm.hibernate.model.Sailboat;
+import com.polytech.bsm.hibernate.model.*;
+import org.hibernate.Hibernate;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.sql.ResultSet;
 
 public class Main {
 
-    public static void main(String[] args) {
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
+    private EntityTransaction entityTransaction;
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tpHibernate");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public Main()
+    {
+        entityManagerFactory = Persistence.createEntityManagerFactory("tpHibernate");
+        entityManager = entityManagerFactory.createEntityManager();
+    }
 
-        EntityTransaction entityTransaction = entityManager.getTransaction();
+    public void createDatabase()
+    {
+        entityTransaction = entityManager.getTransaction();
 
         Dock dock = new Dock();
         Owner jack = new Owner("Jack Sparrow", "132 Rue du poney");
@@ -27,7 +34,7 @@ public class Main {
         Space space2 = new Space(1);
         Sailboat blackpearl2 = new Sailboat("Le Blackpear2", 5000, 15);
         Space space3 = new Space(1);
-        Sailboat blackpearl3 = new Sailboat("Le Blackpear3", 5000, 15);
+        Motorboat blackpearl3 = new Motorboat("Le Blackpear3", 5000, 15);
 
         try
         {
@@ -42,6 +49,8 @@ public class Main {
             blackpearl3.addSpace(space3);
             blackpearl3.addOwner(jack);
             dock.addSpace(space3);
+
+            //SELECT COUNT(*) FROM Space s, Boat b WHERE s.boat_boatID=b.boatID AND b.DTYPE='Sailboat' AND b.sailSurface>150
 
         }
         catch (Exception d)
@@ -63,5 +72,11 @@ public class Main {
         entityTransaction.commit();
         entityManager.close();
         entityManagerFactory.close();
+    }
+
+
+    public static void main(String[] args)
+    {
+        Main main = new Main();
     }
 }
