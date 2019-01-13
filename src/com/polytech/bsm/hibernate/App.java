@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.print.Doc;
 
 public class App {
 
@@ -25,6 +26,8 @@ public class App {
         entityTransaction = entityManager.getTransaction();
 
         Dock dock = new Dock();
+        Dock dock2 = new Dock();
+
         Owner jack = new Owner("Jack Sparrow", "132 Rue du poney");
 
         Space space = new Space(1);
@@ -33,6 +36,8 @@ public class App {
         Sailboat blackpearl2 = new Sailboat("Le Blackpear2", 5000, 15);
         Space space3 = new Space(1);
         Motorboat blackpearl3 = new Motorboat("Le Blackpear3", 5000, 15);
+        Space space4 = new Space(1);
+        Sailboat blackpearl4 = new Sailboat("Le Blackpear4", 5000, 15);
 
         try
         {
@@ -48,7 +53,9 @@ public class App {
             blackpearl3.addOwner(jack);
             dock.addSpace(space3);
 
-            //SELECT COUNT(*) FROM Space s, Boat b WHERE s.boat_boatID=b.boatID AND b.DTYPE='Sailboat' AND b.sailSurface>150
+            blackpearl4.addSpace(space4);
+            blackpearl4.addOwner(jack);
+            dock2.addSpace(space4);
 
         }
         catch (Exception d)
@@ -57,7 +64,10 @@ public class App {
         }
 
         entityTransaction.begin();
+
         entityManager.persist(dock);
+        entityManager.persist(dock2);
+
         entityManager.persist(jack);
 
         entityManager.persist(space);
@@ -66,6 +76,8 @@ public class App {
         entityManager.persist(blackpearl2);
         entityManager.persist(space3);
         entityManager.persist(blackpearl3);
+        entityManager.persist(space4);
+        entityManager.persist(blackpearl4);
 
         entityTransaction.commit();
         entityManager.close();
