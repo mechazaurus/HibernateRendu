@@ -1,22 +1,20 @@
 package com.polytech.bsm.hibernate;
 
+import com.polytech.bsm.hibernate.controller.dao.DockDAO;
 import com.polytech.bsm.hibernate.model.*;
-import org.hibernate.Hibernate;
-import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.sql.ResultSet;
 
-public class Main {
+public class App {
 
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EntityTransaction entityTransaction;
 
-    public Main()
+    public App()
     {
         entityManagerFactory = Persistence.createEntityManagerFactory("tpHibernate");
         entityManager = entityManagerFactory.createEntityManager();
@@ -74,9 +72,33 @@ public class Main {
         entityManagerFactory.close();
     }
 
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
 
-    public static void main(String[] args)
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public EntityTransaction getEntityTransaction() {
+        return entityTransaction;
+    }
+
+    public void setEntityTransaction(EntityTransaction entityTransaction) {
+        this.entityTransaction = entityTransaction;
+    }
+
+    public void close()
     {
-        Main main = new Main();
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }
