@@ -73,7 +73,7 @@ public abstract class MainView {
         //reader.close();
 
         // Get result
-        Long result = DockDAO.numberOfBoats(em, code);
+        Long result = SpaceDAO.numberOfBoats(em, code);
 
         // Print it out
         System.out.println("There is/are " + result + " boat(s) currently present in dock number " + code);

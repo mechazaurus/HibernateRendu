@@ -1,3 +1,4 @@
+import com.polytech.bsm.hibernate.App;
 import com.polytech.bsm.hibernate.view.MainView;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,11 @@ public class Main  {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         // Scanner
         Scanner reader = new Scanner(System.in);
+
+        //Manualy create database from App class
+        //App app = new App(entityManager);
+        //app.createDatabase();
+
 
         // Run the main menu
         MainView.mainMenu(entityManager);

@@ -28,25 +28,5 @@ public class DockDAO {
         return dock;
     }
 
-    /**
-     * Get the number of boats currently in the dock.
-     * @param em The EntityManager to use to connect to the database.
-     * @param dockId The dock's code.
-     * @return The number of boats.
-     */
-    public static Long numberOfBoats(EntityManager em, Long dockId) {
-
-        // SQL query
-        String sql = "SELECT COUNT(s) FROM Space s, Dock d " +
-                "WHERE s.boat.boatID IS NOT NULL " +
-                "AND d.dockCode = :code";
-
-        // Get result
-        Long result = (Long) em.createQuery(sql)
-                .setParameter("code", dockId)
-                .getSingleResult();
-
-        return result;
-    }
 }
 
