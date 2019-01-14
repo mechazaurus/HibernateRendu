@@ -1,16 +1,26 @@
-import com.polytech.bsm.hibernate.App;
-import com.polytech.bsm.hibernate.controller.dao.DockDAO;
-import com.polytech.bsm.hibernate.controller.dao.SpaceDAO;
+import com.polytech.bsm.hibernate.view.MainView;
 
-public class Main
-{
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.Scanner;
 
-    public static void main(String[] args)
-    {
-        App app = new App();
-        //app.createDatabase();
-        SpaceDAO.getSpaceWithSailboat(app.getEntityManager());
-        app.close();
+public class Main  {
+
+    public static void main(String[] args) {
+
+        // Init
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tpHibernate");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Scanner
+        Scanner reader = new Scanner(System.in);
+
+        // Run the main menu
+        MainView.mainMenu(entityManager);
+
+        // Close everything
+        entityManager.close();
+        entityManagerFactory.close();
+        reader.close();
     }
-
 }
