@@ -29,9 +29,7 @@ public class App {
         Dock dock2 = new Dock(12);
 
         //Creating owners
-        //Jack owns all sailboat
         Owner jack = new Owner("Jack Sparrow", "132 Rue du poney");
-        //Bob owns all motorboat
         Owner bob = new Owner("Bob", "Champs Elysees");
 
         //Creating spaces with boats
@@ -68,15 +66,12 @@ public class App {
             dock1.addSpace(space0);
 
             sailboat1.addSpace(space1);
-            sailboat1.addOwner(jack);
             dock1.addSpace(space1);
 
             sailboat2.addSpace(space2);
-            sailboat2.addOwner(jack);
             dock1.addSpace(space2);
 
             motorboat0.addSpace(space4);
-            motorboat0.addOwner(bob);
             dock1.addSpace(space4);
 
             //Adding empty space to dock1
@@ -84,7 +79,6 @@ public class App {
 
             //Adding to dock2
             sailboat3.addSpace(space3);
-            sailboat3.addOwner(jack);
             dock2.addSpace(space3);
 
             motorboat1.addSpace(space5);
@@ -92,11 +86,9 @@ public class App {
             dock2.addSpace(space5);
 
             motorboat2.addSpace(space6);
-            motorboat2.addOwner(bob);
             dock2.addSpace(space6);
 
             motorboat3.addSpace(space7);
-            motorboat3.addOwner(bob);
             dock2.addSpace(space7);
 
             //Adding empty space to dock2
